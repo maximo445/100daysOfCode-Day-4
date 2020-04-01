@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+
+}
+
+body {
+  font-family: 'Baloo Thambi 2', cursive, sans-serif;
+  width: 30%;
+  margin: auto;
+  background-color: #3C3B47;
+}
+
+button {
+  background-color: #FF5733;
+  border: none;
+  height: 25px;
+  color: white;
+  border-radius: 5px;
+}
+
+h1 {
+  color: white;
+}
+
+hr {
+  margin-top: 30px;
+  width: 215px;
+  margin-left: 0;
+  background-color: #581845;
+  height: 3px;
+  border: 1px solid #581845;
+  border-radius: 1px;
+
+}
+
+.mainContent {
+  background-image: url('img/pattern.png');
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+  margin-right: 0;
+  align-items: center;
+  border: 3px solid #C70039;
+  border-radius: 8px;
+}
+
+.addHeading {
+  margin: 2px 0;
+}
+
+.removeButton {
+  background-color: #E32646;
+}
