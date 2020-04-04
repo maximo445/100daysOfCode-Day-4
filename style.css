@@ -36,7 +36,7 @@ hr {
 
 }
 
-.mainContent {
+.content {
   background-image: url('img/pattern.png');
   width: 300px;
   display: flex;
@@ -48,10 +48,15 @@ hr {
   border-radius: 8px;
 }
 
+.addPassengerInput {
+  border-radius: 5px;
+}
+
 .addHeading {
   margin: 2px 0;
 }
 
-.removeButton {
+.removeButton,
+.deleteButton {
   background-color: #E32646;
 }
