@@ -3,13 +3,11 @@
 }
 
 html {
-
+  height: 100%;
 }
 
 body {
   font-family: 'Baloo Thambi 2', cursive, sans-serif;
-  width: 30%;
-  margin: auto;
   background-color: #3C3B47;
 }
 
@@ -23,6 +21,15 @@ button {
 
 h1 {
   color: white;
+  position: absolute;
+  top: -80px;
+  left: 0;
+}
+
+.addHeading,
+.atCourtHeading,
+.tripHistoryHeading {
+  font-size: 1.5em;
 }
 
 hr {
@@ -36,13 +43,22 @@ hr {
 
 }
 
+.main-content {
+  position: relative;
+  width: 30%;
+  margin: 100px auto;
+  height: 100%;
+}
+
 .content {
   background-image: url('img/pattern.png');
-  width: 300px;
+  width: 100%;
+  height: 100%;
+  margin:auto;
   display: flex;
   flex-direction: column;
   padding: 15px 30px;
-  margin-right: 0;
+  /* margin-right: 0; */
   align-items: center;
   border: 3px solid #C70039;
   border-radius: 8px;
@@ -59,4 +75,58 @@ hr {
 .removeButton,
 .deleteButton {
   background-color: #E32646;
+}
+
+@media (max-width: 1008px) {
+  .main-content {
+    width: 35%;
+  }
+}
+
+@media (max-width: 805px) {
+  .main-content {
+    width: 50%;
+  }
+}
+
+@media (max-width: 625px) {
+  .main-content {
+    width: 70%;
+  }
+}
+
+@media (max-width: 455px) {
+  .main-content {
+    width: 95%;
+    min-width: ;
+  }
+}
+
+@media (max-width: 345px) {
+
+  .addPassengerInput {
+    width: 120px;
+  }
+
+  .addHeading,
+  .atCourtHeading,
+  .tripHistoryHeading {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 278px) {
+
+  body {
+    min-width: 235px;
+  }
+
+  hr {
+    width: 100%;
+  }
+  .atCourt,
+  .tripHistory {
+    width: 97%;
+    margin: 0 auto;
+  }
 }

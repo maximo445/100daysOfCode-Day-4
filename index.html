@@ -5,43 +5,43 @@
     <title>Court Trips</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi+2&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width">
   </head>
   <body>
 
-    <header>
+    <main class="main-content">
+
       <div class="headerContent">
         <h1>Court Trips</h1>
       </div>
-    </header>
 
-    <div class="content">
-      <div class="addPassengers">
-        <h2 class="addHeading">Add passengers:</h2>
-        <input class="addPassengerInput" type="text" name="addInput" value="">
-        <button class="addPassengerButton" type="button" name="addButton">Add</button>
+      <div class="content">
+        <div class="addPassengers">
+          <h2 class="addHeading">Add passengers:</h2>
+          <input class="addPassengerInput" type="text" name="addInput" value="">
+          <button class="addPassengerButton" type="button" name="addButton">Add</button>
+        </div>
 
+        <div class="atCourt">
+          <hr>
+          <h2 class="atCourtHeading">At court</h2>
+          <ol class="atCourtList">
+
+          </ol>
+          <button class="removeButton"type="button" name="button">Remove</button>
+        </div>
+
+        <div class="tripHistory">
+          <hr>
+          <h2 class="tripHistoryHeading">Trip History</h2>
+          <ol class="historyList">
+
+          </ol>
+          <button class="addBackButton" type="button" name="addBack">Add back</button>
+          <button class="deleteButton" type="button" name="delete">Delete</button>
+        </div>
       </div>
-
-      <div class="atCourt">
-        <hr>
-        <h2 class="court-history">At court</h2>
-        <ol class="atCourtList">
-
-        </ol>
-        <button class="removeButton"type="button" name="button">Remove</button>
-      </div>
-
-      <div class="tripHistory">
-        <hr>
-        <h2>Trip History</h2>
-        <ol class="historyList">
-
-        </ol>
-        <button class="addBackButton" type="button" name="addBack">Add back</button>
-        <button class="deleteButton" type="button" name="delete">Delete</button>
-      </div>
-    </div>
+    </main>
 
 
     <script src="app.js" type="text/javascript">
