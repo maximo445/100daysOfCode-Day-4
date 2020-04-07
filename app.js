@@ -6,6 +6,15 @@
   const historyList = document.querySelector('.historyList');
   const content = document.querySelector('.content');
   const deleteButton = document.querySelector('.deleteButton');
+  const notification = document.querySelector('.notification');
+  const removeButton = document.querySelector('.removeButton');
+
+  let removeCheckBoxes;
+  let atCourtPeople;
+  let itemToHistory;
+  let historyCheckBoxes;
+  let atHistoryPeople;
+
 
   content.addEventListener('mouseover', (event) => {
     if (event.target.tagName === 'BUTTON') {
@@ -21,84 +30,98 @@
     }
   });
 
-  //Revoming people constants
-  const removeButton = document.querySelector('.removeButton');
+  content.addEventListener('click', (event) => {
+    if (event.target.className == 'addPassengerButton') {
 
-  //Adding people to list component
-  let addLiElement;
+      let addLiElement = document.createElement('li');
+      addLiElement.className = "atCourtPeople";
 
-  addPassengerButton.addEventListener('click', () => {
+      let addInputElement = document.createElement('input')
+      addInputElement.className = "removeCheckBoxes";
+      addInputElement.type = "checkbox";
 
-    addLiElement = document.createElement('li');
-    addLiElement.className = "atCourtPeople";
-
-    if (addPassengerInput.value === "") {
-      addPassengerInput.value = "Unknown";
-    }
-    addLiElement.innerHTML = addPassengerInput.value + "   " + '<input  class="removeCheckBoxes" type="checkbox" name="" value="">';
-
-    addList.appendChild(addLiElement);
-    addPassengerInput.value = "";
-
- });
-
-  //Removing people from list component
-  let removeCheckBoxes;
-  let atCourtPeople;
-
-  let itemToHistory;
-
-  removeButton.addEventListener('click', () => {
-    removeCheckBoxes = document.querySelectorAll('.removeCheckBoxes');
-    atCourtPeople = document.querySelectorAll('.atCourtPeople');
-
-    for (let i = 0; i < atCourtPeople.length; i++) {
-      if(removeCheckBoxes[i].checked === true){
-        itemToHistory = document.createElement('li');
-        itemToHistory.className = "atHistoryPeople";
-        itemToHistory.innerHTML = atCourtPeople[i].textContent + "   " + '<input  class="historyCheckBoxes" type="checkbox" name="" value="">';
-        historyList.appendChild(itemToHistory);
-
-        atCourtPeople[i].parentNode.removeChild(atCourtPeople[i]);
-        removeCheckBoxes[i].remove;
+      if (addPassengerInput.value === "") {
+        addPassengerInput.value = "Unknown";
       }
+
+      addLiElement.textContent = addPassengerInput.value
+      addLiElement.appendChild(addInputElement);
+
+      addList.appendChild(addLiElement);
+      addPassengerInput.value = "";
+    }
+
+    if (event.target.className == 'removeButton') {
+      loop('.atCourtPeople', '.removeCheckBoxes', 'removeButton')
+    }
+
+    if (event.target.className == 'addBackButton') {
+      loop('.atHistoryPeople','.historyCheckBoxes','addBackButton');
+    }
+
+    if (event.target.className == 'deleteButton') {
+      loop('.atHistoryPeople', '.historyCheckBoxes', 'deleteButton');
     }
   });
 
+  function loop (peopleClass, checkboxesClass, myEvent) {
+    let people = document.querySelectorAll(peopleClass);
+    let checkboxes = document.querySelectorAll(checkboxesClass);
 
+    let person = [];
 
-  //Adding back passengers to court list
-  let historyCheckBoxes;
-  let atHistoryPeople;
+    if (myEvent == 'removeButton') {
+      for (let i = 0; i < people.length; i++) {
+        if(checkboxes[i].checked === true){
+          let itemToHistory = document.createElement('li');
+          itemToHistory.className = "atHistoryPeople";
+          itemToHistory.innerHTML = people[i].textContent + "   " + '<input  class="historyCheckBoxes" type="checkbox" name="" value="">';
+          historyList.appendChild(itemToHistory);
 
-  addBackButton.addEventListener('click', () => {
-    historyCheckBoxes = document.querySelectorAll('.historyCheckBoxes');
-    atHistoryPeople = document.querySelectorAll('.atHistoryPeople');
-
-    for (let i = 0; i < atHistoryPeople.length; i++) {
-      if(historyCheckBoxes[i].checked === true){
-
-        addLiElement = document.createElement('li');
-        addLiElement.className = "atCourtPeople";
-        addLiElement.innerHTML = atHistoryPeople[i].textContent + '<input  class="removeCheckBoxes" type="checkbox" name="" value="">';
-
-        addList.appendChild(addLiElement);
-
-        atHistoryPeople[i].parentNode.removeChild(atHistoryPeople[i]);
-        historyCheckBoxes[i].remove;
-      }
-
-    }
-  });
-
-  deleteButton.addEventListener('click', () => {
-    historyCheckBoxes = document.querySelectorAll('.historyCheckBoxes');
-    atHistoryPeople = document.querySelectorAll('.atHistoryPeople');
-
-    for (let i = 0; i < atHistoryPeople.length; i++) {
-      if(historyCheckBoxes[i].checked === true){
-        atHistoryPeople[i].parentNode.removeChild(atHistoryPeople[i]);
-        historyCheckBoxes[i].remove;
+          people[i].parentNode.removeChild(people[i]);
+          checkboxes[i].remove;
+        }
       }
     }
-  });
+
+    if (myEvent == 'addBackButton') {
+      for (let i = 0; i < people.length; i++) {
+        if(checkboxes[i].checked === true){
+
+          let addLiElement = document.createElement('li');
+          addLiElement.className = "atCourtPeople";
+          addLiElement.innerHTML = people[i].textContent + '<input  class="removeCheckBoxes" type="checkbox" name="" value="">';
+
+          addList.appendChild(addLiElement);
+
+          people[i].parentNode.removeChild(people[i]);
+          checkboxes[i].remove;
+        }
+      }
+    }
+
+    if (myEvent == 'deleteButton') {
+      for (let i = 0; i < people.length; i++) {
+        if(checkboxes[i].checked === true){
+          people[i].parentNode.removeChild(people[i]);
+          checkboxes[i].remove;
+          person.push(i);
+        }
+      }
+      whoGotChanged(people[person]);
+      person = [];
+    }
+  }
+
+  function whoGotChanged (myPerson) {
+    if (myPerson.length > 1) {
+      notification.textContent = myPerson.length.toString() + ' deleted';
+    } else {
+      notification.textContent = myPerson.textContent + ' del';
+    }
+
+    window.setTimeout((myString) => {
+      notification.textContent = myString;
+    }, 1000, "");
+
+  }
