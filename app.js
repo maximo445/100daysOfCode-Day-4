@@ -8,27 +8,13 @@
   const deleteButton = document.querySelector('.deleteButton');
   const notification = document.querySelector('.notification');
   const removeButton = document.querySelector('.removeButton');
+  const tripHistoryBottom = document.querySelector('.tripHistoryBottom');
 
   let removeCheckBoxes;
   let atCourtPeople;
   let itemToHistory;
   let historyCheckBoxes;
   let atHistoryPeople;
-
-
-  content.addEventListener('mouseover', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-      event.target.style.color = 'purple';
-      event.target.style.border = '3px solid grey';
-    }
-  });
-
-  content.addEventListener('mouseout', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-      event.target.style.color = 'white';
-      event.target.style.border = 'none';
-    }
-  });
 
   content.addEventListener('click', (event) => {
     if (event.target.className == 'addPassengerButton') {
@@ -51,6 +37,14 @@
       addPassengerInput.value = "";
     }
 
+    if (event.target.className == 'tripHistoryHeading') {
+      if (tripHistoryBottom.style.display == 'none') {
+        tripHistoryBottom.style.display = 'block';
+      } else {
+        tripHistoryBottom.style.display = 'none';
+      }
+    }
+
     if (event.target.className == 'removeButton') {
       loop('.atCourtPeople', '.removeCheckBoxes', 'removeButton')
     }
@@ -62,6 +56,7 @@
     if (event.target.className == 'deleteButton') {
       loop('.atHistoryPeople', '.historyCheckBoxes', 'deleteButton');
     }
+
   });
 
   function loop (peopleClass, checkboxesClass, myEvent) {
@@ -114,10 +109,13 @@
   }
 
   function whoGotChanged (myPerson) {
+
+    notification.style.color = 'red';
+
     if (myPerson.length > 1) {
       notification.textContent = myPerson.length.toString() + ' deleted';
     } else {
-      notification.textContent = myPerson.textContent + ' del';
+      notification.textContent = myPerson.textContent.substr(0,7);
     }
 
     window.setTimeout((myString) => {
