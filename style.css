@@ -81,7 +81,20 @@ hr {
 .tripHistoryBottom {
   opacity: 1;
   transition: opacity 1000ms linear;
-  /* display: none; */
+}
+
+.atCourtPeople {
+  margin-bottom: 10px;
+}
+
+.historyList {
+  margin-bottom: 10px;
+}
+
+.removeButton,
+.addBackButton,
+.deleteButton {
+  margin: 0 3px;
 }
 
 .removeButton,
